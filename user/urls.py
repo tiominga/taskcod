@@ -16,12 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from . import views
+
+app_name = 'user'
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('home.urls')),  # Include URLs from the home app
-    path('accounts/',include('django.contrib.auth.urls')),
-    path('user/', include('user.urls')),  # Include URLs from the user app
-   
+       path('',views.user_register,name='register'),
+       path('save/', views.user_save, name='save'),  # Assuming you have a save view   
+       ] 
 
-]

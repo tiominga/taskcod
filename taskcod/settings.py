@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,7 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGOUT_REDIRECT_URL =  'login' #login é o namespace interno
+LOGIN_REDIRECT_URL = 'home:index' #home é o namespace interno
+
