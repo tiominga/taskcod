@@ -148,5 +148,5 @@ LOGIN_URL = 'accounts/login/'
 LOGOUT_REDIRECT_URL =  'login/' #login é o namespace interno
 LOGIN_REDIRECT_URL = 'home:index' #home é o namespace interno
 
-FORCE_SCRIPT_NAME = '/taskcod/'
+#FORCE_SCRIPT_NAME = '/taskcod/'
 
