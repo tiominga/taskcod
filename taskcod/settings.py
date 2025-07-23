@@ -132,11 +132,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/' #linha original, referencia, coloque as de baixo:
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root') 
-MEDIA_ROOT = (os.path.join(BASE_DIR,'media'))
-MEDIA_URL = "/media/"
+FORCE_SCRIPT_NAME = '/taskcod'
+
+STATIC_URL = '/taskcod/static/'
+MEDIA_URL = '/taskcod/media/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
@@ -148,5 +151,5 @@ LOGIN_URL = 'accounts/login/'
 LOGOUT_REDIRECT_URL =  'login/' #login é o namespace interno
 LOGIN_REDIRECT_URL = 'home:index' #home é o namespace interno
 
-#FORCE_SCRIPT_NAME = '/taskcod/'
+
 
