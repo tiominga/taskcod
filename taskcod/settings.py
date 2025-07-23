@@ -144,7 +144,9 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/taskcod/accounts/login/'
-LOGOUT_REDIRECT_URL =  '/taskcod/login' #login é o namespace interno
-LOGIN_REDIRECT_URL = '/taskcod/home:index' #home é o namespace interno
+LOGIN_URL = 'accounts/login/'
+LOGOUT_REDIRECT_URL =  'login/' #login é o namespace interno
+LOGIN_REDIRECT_URL = 'home:index' #home é o namespace interno
+
+FORCE_SCRIPT_NAME = '/taskcod'
 
