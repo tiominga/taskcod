@@ -38,7 +38,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Pynku 1.0</a>
+        <a class="navbar-brand" href="#">Tarefas Infovet</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
           aria-label="Toggle navigation">
@@ -48,8 +48,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/categorias">Categorias</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/categorias">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'task:task_form' %}">Tarefas</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'task:task_form' %}">Nova Tarefa</a></li>
                 <li class="nav-item d-flex align-items-center">
                     <form method="post" action="{% url 'logout' %}" style="display:inline;">
                         {% csrf_token %}
@@ -75,7 +76,7 @@
     <!-- RODAPÉ FIXO -->
     <footer class="bg-dark text-white text-center mt-auto footer_index">
       {% block footer %}
-      © pynku 2025 - By TioMinga
+      © Tarefas Infovet 2025 - By M&B
       {% endblock %}
     </footer>
 
@@ -86,7 +87,7 @@
         <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <i class="fas fa-cat mr-1"></i>
-                <strong class="me-auto">Pynku</strong>
+                <strong class="me-auto">Tarefas Infovet</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">

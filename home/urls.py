@@ -22,6 +22,6 @@ app_name = 'home'
 
 
 urlpatterns = [
-       path('',views.home_index,name='index'),           
+       path('',views.home_index,name='index'),            
        ] 
 

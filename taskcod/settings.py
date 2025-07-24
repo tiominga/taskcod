@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'user',
+    'task',
 ]
 
 MIDDLEWARE = [
@@ -148,8 +149,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'accounts/login/'
-LOGOUT_REDIRECT_URL =  'login/' #login é o namespace interno
+LOGOUT_REDIRECT_URL =  'login' #login é o namespace interno
 LOGIN_REDIRECT_URL = 'home:index' #home é o namespace interno
-
-
-
