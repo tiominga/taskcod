@@ -1,12 +1,20 @@
 {% extends "main.html" %}
 {% load static %}
 
+{% block head %}
+
+    <script src="{% static 'task/js/task_form.js' %}"></script>
+
+{% endblock %}
+
 {% block body %}
+
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 border p-4 rounded">
             <h2 class="text-center mb-4">📝 Nova Tarefa</h2>
-            <form method="post" action="{% url 'task:task_add' %}">
+            <form method="post" id="form_task" action="{% url 'task:task_add' %}">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="id_clinica" class="form-label">ID da Clínica:</label>
@@ -43,9 +51,14 @@
                     <textarea class="form-control" id="descricao" name="descricao" required></textarea>
                     <div class="form-text">A descrição precisa ter ao menos 15 letras.</div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                <button type="button" class="btn btn-primary w-100" onclick = "save();">Enviar</button>
             </form>
         </div>
     </div>
 </div>
+
+
+
+
 {% endblock %}
+

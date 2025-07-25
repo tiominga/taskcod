@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Task
 from django.contrib import messages
+from django.http import JsonResponse
+import json
+
 
 @login_required
 def task_add(request):
@@ -17,12 +20,10 @@ def task_add(request):
         try:
             task.full_clean()
             task.save()
-            messages.success(request, 'Tarefa criada com sucesso!')
-            print(f"id ------->{task.id}")
-            return redirect('print:print_form',cod_task = task.id)
+            data = {'success':True,'message':task.id}             
         except Exception as e:
-              print(f"Erro: {e}")
-    return render(request, 'task_form.html')         
+            data = {'success':False,'message':e.messages[0]}             
+    return JsonResponse(data)      
 
     
 

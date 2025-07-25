@@ -23,7 +23,7 @@ class Task(models.Model):
         if not self.caminho:
             raise ValidationError('Informe o caminho que o programador deve seguir para encontrar o erro')
         if not self.descricao:
-            raise ValidationError('A descrição é obrigatórios')
+            raise ValidationError('A descrição é obrigatória')
         if len(self.descricao) < 15:
             raise ValidationError('A descrição precisa de ao menos 15 letras')    
 
