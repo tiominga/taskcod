@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% load static %}
+
+
+{% block body%}
+
+<div>
+    <h2> 📸 Formulário de Print</h2>
+    <form method="post" enctype="multipart/form-data" action="{% url 'print:print_add' %}">
+        {% csrf_token %}
+        <input type="hidden" name="cod_task" value="{{ cod_task }}">
+        <input type="file" name="image" required>
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+{% endblock %}

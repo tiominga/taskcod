@@ -7,3 +7,4 @@ sudo apt install sqlite3
 pip install django_extensions
 pip install python-dotenv
 pip install gunicorn
+python -m pip install Pillow

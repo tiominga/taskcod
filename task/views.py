@@ -18,10 +18,13 @@ def task_add(request):
             task.full_clean()
             task.save()
             messages.success(request, 'Tarefa criada com sucesso!')
-            return redirect('task:task_form')
+            print(f"id ------->{task.id}")
+            return redirect('print:print_form',cod_task = task.id)
         except Exception as e:
-            messages.error(request, str(e))
-    return redirect('task:task_form')
+              print(f"Erro: {e}")
+    return render(request, 'task_form.html')         
+
+    
 
 @login_required
 def task_form(request):
