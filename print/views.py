@@ -19,7 +19,8 @@ def print_add(request):
     return redirect('print:print_form',cod_task = obj_print.cod_task_id)         
 
 def print_form(request,cod_task):
-    return render(request,'print_form.html',{'cod_task':cod_task})
+    arr_images = Print.objects.filter(cod_task_id = cod_task)
+    return render(request,'print_form.html',{'cod_task':cod_task , 'arr_images':arr_images})
 
 
             
