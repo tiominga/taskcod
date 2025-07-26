@@ -1,64 +1,66 @@
 {% extends "main.html" %}
 {% load static %}
 
-{% block head %}
-
-    <script src="{% static 'task/js/task_form.js' %}"></script>
-
-{% endblock %}
-
 {% block body %}
-
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 border p-4 rounded">
+
+           {% if messages %}
+                <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                {% for message in messages %}
+                    liveToast('bg-{{ message.tags|default:"primary" }}', '{{ message|escapejs }}');
+                {% endfor %}
+                });
+                </script>
+           {% endif %}
+
             <h2 class="text-center mb-4">📝 Nova Tarefa</h2>
             <form method="post" id="form_task" action="{% url 'task:task_add' %}">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="id_clinica" class="form-label">ID da Clínica:</label>
-                    <input type="number" class="form-control" id="id_clinica" name="id_clinica" required>
+                    <input type="number" class="form-control" id="id_clinica" name="id_clinica" required
+                        value="{{ task_data.id_clinica|default_if_none:'' }}">
                     <div class="form-text">Coloque 1 caso a requisição seja de sua autoria.</div>
                 </div>
                 <div class="mb-3">
                     <label for="tipo" class="form-label">Tipo:</label>
                     <select class="form-select" id="tipo" name="tipo" required>
-                        <option value="" selected disabled>Selecione um tipo</option>
-                        <option value="Bug">Bug</option>
-                        <option value="Melhoria">Melhoria</option>
-                        <option value="Nova Funcionalidade">Nova Funcionalidade</option>
-                        <option value="Outro">Outro</option>
+                        <option value="" disabled {% if not task_data.tipo %}selected{% endif %}>Selecione um tipo</option>
+                        <option value="Bug" {% if task_data.tipo == "Bug" %}selected{% endif %}>Bug</option>
+                        <option value="Melhoria" {% if task_data.tipo == "Melhoria" %}selected{% endif %}>Melhoria</option>
+                        <option value="Nova Funcionalidade" {% if task_data.tipo == "Nova Funcionalidade" %}selected{% endif %}>Nova Funcionalidade</option>
+                        <option value="Outro" {% if task_data.tipo == "Outro" %}selected{% endif %}>Outro</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="prioridade" class="form-label">Prioridade:</label>
                     <select class="form-select" id="prioridade" name="prioridade" required>
-                        <option value="" selected disabled>Selecione uma prioridade</option>
-                        <option value="4">❄️ Baixa</option>
-                        <option value="3">😐 Média</option>
-                        <option value="2">⚠️ Alta</option>
-                        <option value="1">🔥 Crítica</option>
+                        <option value="" disabled {% if not task_data.prioridade %}selected{% endif %}>Selecione uma prioridade</option>
+                        <option value="4" {% if task_data.prioridade == "4" %}selected{% endif %}>❄️ Baixa</option>
+                        <option value="3" {% if task_data.prioridade == "3" %}selected{% endif %}>😐 Média</option>
+                        <option value="2" {% if task_data.prioridade == "2" %}selected{% endif %}>⚠️ Alta</option>
+                        <option value="1" {% if task_data.prioridade == "1" %}selected{% endif %}>🔥 Crítica</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="caminho" class="form-label">Caminho:</label>
-                    <input type="text" class="form-control" id="caminho" name="caminho" maxlength="200" required>
+                    <input type="text" class="form-control" id="caminho" name="caminho" maxlength="200" required
+                        value="{{ task_data.caminho|default_if_none:'' }}">
                     <div class="form-text">Informe o caminho que o programador deve seguir para encontrar o erro.</div>
                 </div>
                 <div class="mb-3">
                     <label for="descricao" class="form-label">Descrição:</label>
-                    <textarea class="form-control" id="descricao" name="descricao" required></textarea>
+                    <textarea class="form-control" id="descricao" name="descricao" required>{{ task_data.descricao|default_if_none:'' }}</textarea>
                     <div class="form-text">A descrição precisa ter ao menos 15 letras.</div>
                 </div>
-                <button type="button" class="btn btn-primary w-100" onclick = "save();">Enviar</button>
+                <button type="submit" class="btn btn-primary w-100">Enviar</button>
             </form>
         </div>
     </div>
 </div>
 
-
-
-
 {% endblock %}
-
