@@ -21,8 +21,12 @@ app_name = 'task'
 
 
 urlpatterns = [
+
        path('task_form/',views.task_form,name='task_form'),
-       path('task_add/',views.task_add,name='task_add')
+       path('task_add/',views.task_add,name='task_add'),
+       path('task_sql_to_table',views.task_sql_to_table,name='task_sql_to_table'),
+       path('task_table',views.task_table,name='task_table'),     
+       path('task_change_priority/<int:id_task>/<int:priority>/', views.task_change_priority, name='task_change_priority'),
        
        ] 
 
