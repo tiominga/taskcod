@@ -117,13 +117,13 @@ class SqlToTable:
         if self.edit_function is not None:
             buttons += (
                 f'<button onclick="{self.edit_function}({id_value},event)" '
-                f'class="btn btn-primary btn-sm" style="{button_style}">Edit</button>'
+                f'class="btn btn-primary btn-sm" style="{button_style}">✏</button>'
             )
 
         if self.delete_function is not None:
             buttons += (
                 f'<button onclick="{self.delete_function}({id_value},event)" '
-                f'class="btn btn-danger btn-sm" style="{button_style}">Delete</button>'
+                f'class="btn btn-danger btn-sm" style="{button_style}">🗑</button>'
             )
 
         return buttons

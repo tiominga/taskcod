@@ -5,7 +5,7 @@
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6 border p-4 rounded">
+        <div class="col-md-6 border p-1 rounded">
 
            {% if messages %}
                 <script>
@@ -17,15 +17,19 @@
                 </script>
            {% endif %}
 
-            <h2 class="text-center mb-4">📝 Nova Tarefa</h2>
+            <h2 class="text-center mb-4">📝 Tarefa</h2>
             <form method="post" id="form_task" action="{% url 'task:task_add' %}">
                 {% csrf_token %}
+
+                <input type="hidden" name="id" value="{{task_data.id|default_if_none:''}}">
+
                 <div class="mb-3">
                     <label for="id_clinica" class="form-label">ID da Clínica:</label>
                     <input type="number" class="form-control" id="id_clinica" name="id_clinica" required
                         value="{{ task_data.id_clinica|default_if_none:'' }}">
                     <div class="form-text">Coloque 1 caso a requisição seja de sua autoria.</div>
                 </div>
+
                 <div class="mb-3">
                     <label for="tipo" class="form-label">Tipo:</label>
                     <select class="form-select" id="tipo" name="tipo" required>
@@ -36,6 +40,7 @@
                         <option value="Outro" {% if task_data.tipo == "Outro" %}selected{% endif %}>Outro</option>
                     </select>
                 </div>
+
                 <div class="mb-3">
                     <label for="prioridade" class="form-label">Prioridade:</label>
                     <select class="form-select" id="prioridade" name="prioridade" required>
@@ -46,21 +51,44 @@
                         <option value="1" {% if task_data.prioridade == "1" %}selected{% endif %}>1-🔥 Crítica</option>
                     </select>
                 </div>
+
+                <script>
+                    document.getElementById("prioridade").value = "{{ task_data.prioridade }}";
+                </script>
+
                 <div class="mb-3">
                     <label for="caminho" class="form-label">Caminho:</label>
                     <input type="text" class="form-control" id="caminho" name="caminho" maxlength="200" required
                         value="{{ task_data.caminho|default_if_none:'' }}">
                     <div class="form-text">Informe o caminho que o programador deve seguir para encontrar o erro.</div>
                 </div>
+
+                <div class="mb-3">
+                    <label for="dev" class="form-label">Executor:</label>
+                    <select name="dev" id="dev" class="form-select">                        
+                    {% for dev in devs %}
+                        <option value={{dev.id}}>{{ dev.name }}</option>                                                
+                    {% endfor %}
+                    </select>                
+                    <div class="form-text">Informe o nome de quem vai executar a tarefa.</div>
+                </div>          
+                
+                 <script>
+                    document.getElementById("dev").value = "{{ task_data.cod_dev }}";
+                </script>
+
+
                 <div class="mb-3">
                     <label for="descricao" class="form-label">Descrição:</label>
                     <textarea class="form-control" id="descricao" name="descricao" required>{{ task_data.descricao|default_if_none:'' }}</textarea>
                     <div class="form-text">A descrição precisa ter ao menos 15 letras.</div>
                 </div>
+
                 <button type="submit" class="btn btn-primary w-100">Enviar</button>
             </form>
         </div>
     </div>
 </div>
+<br><br><br><br><br><br><br><br>
 
 {% endblock %}

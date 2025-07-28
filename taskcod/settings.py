@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'user',
     'task',
     'print',
+    'dev',
 ]
 
 MIDDLEWARE = [

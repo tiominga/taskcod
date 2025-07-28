@@ -2,15 +2,20 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from datetime import date
 
+
+
 # Create your models here.
 class Task(models.Model):
     cod_user = models.IntegerField()
+    cod_dev = models.IntegerField(default=0)
+    situtacao = models.CharField(max_length=30,default="Aberto")
     id_clinica = models.IntegerField()
     tipo = models.CharField(max_length=25)
     prioridade = models.IntegerField()
     caminho = models.CharField(max_length=200)
     descricao = models.TextField()
     date_add = models.DateTimeField(auto_now_add=True)
+    
 
 
     def clean(self):

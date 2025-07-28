@@ -27,15 +27,32 @@ function form_fetch(reset_offset = false) {
 function edit_task(id, event) {
 
     event.stopPropagation();
-    alert("Edit function is not implemented yet. id: " + id);
+    let url = `/task/task_edit/${id}`
+    window.location.href = url
 
 
 }
 
 function delete_task(id, event) {
-
     event.stopPropagation();
-    alert("Delete function is not implemented yet. id: " + id);
+
+    if (confirm('Apagar??? (não tem como voltar)')) {
+
+
+        let url = `/task/task_delete/${id}`
+
+        fetch(url, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                liveToast('bg-primary', data.message)
+                form_fetch()
+
+            })
+            .catch(error => console.error(error));
+    }
 
 }
 
@@ -50,7 +67,7 @@ function tr_click(id, event) {
 function change_priority() {
 
     let id = document.getElementById('ed_id_task').value;
-    let priority = document.getElementById('prioridade').value;
+    let priority = document.getElementById('prioridade_change').value;
     document.getElementById('dv_data_change').style.display = 'None';
 
     let url = `/task/task_change_priority/${id}/${priority}/`;
@@ -62,6 +79,7 @@ function change_priority() {
         .then(data => {
             console.log(data)
             liveToast('bg-primary', data.message)
+            form_fetch()
 
         })
         .catch(error => console.error(error));
