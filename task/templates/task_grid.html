@@ -39,9 +39,18 @@
                     {% endfor %}
                     </select>                
                     
-      </div>          
+      </div>    
+      
+       <div style="position:absolute;border:0px solid silver;width:15%;height:100%;top:25%;left:40%" >          
+            <select class="form-select" id="situacao" name="situacao" required>
+                <option value="%">Todas as situações</option>
+                <option value="Aberto">Aberto</option>
+                <option value="Desenvolvendo">Desenvolvendo</option>
+                <option value="Encerrado">Encerrado</option>                     
+            </select>
+         </div>
 
-    <div style="position:absolute;border:0px solid silver;width:10%;height:100%;top:25%;left:40%" >
+    <div style="position:absolute;border:0px solid silver;width:10%;height:100%;top:25%;left:60%" >
 
       <button type="button" class="btn btn-primary" onclick="form_fetch(true)">🔎 Filtrar</button>
 

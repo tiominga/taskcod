@@ -24,6 +24,7 @@ def task_add(request):
         obj_task.caminho = request.POST.get('caminho')
         obj_task.descricao = request.POST.get('descricao')
         obj_task.cod_dev = request.POST.get('dev')
+        obj_task.situacao = request.POST.get('situacao')
         
         
         try:
@@ -64,6 +65,7 @@ def task_sql_to_table(request):
     d.name as Executor,
     t.Caminho,
     t.descricao as 'Descrição',
+    t.situacao as 'Situação',
     date_format(t.date_add,'%%d/%%m/%%Y') as Solicitado 
     from 
     task_task as t,
@@ -73,16 +75,18 @@ def task_sql_to_table(request):
     u.id=t.cod_user
     and
     d.id = t.cod_dev
-    and prioridade like %s 
-    and cod_dev like %s    
+    and t.prioridade like %s 
+    and t.cod_dev like %s  
+    and t.situacao like %s  
     order by t.prioridade"""
 
     if request.method == "POST":     
         param_prioridade = request.POST.get("prioridade")
         param_dev = request.POST.get("dev")
+        param_situacao = request.POST.get("situacao")
 
     if param_prioridade:    
-        params = [param_prioridade,param_dev]
+        params = [param_prioridade,param_dev,param_situacao]
     else:    
         params = '%'
 

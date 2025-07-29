@@ -8,7 +8,7 @@ from datetime import date
 class Task(models.Model):
     cod_user = models.IntegerField()
     cod_dev = models.IntegerField(default=0)
-    situtacao = models.CharField(max_length=30,default="Aberto")
+    situacao = models.CharField(max_length=30,default="Aberto")
     id_clinica = models.IntegerField()
     tipo = models.CharField(max_length=25)
     prioridade = models.IntegerField()
