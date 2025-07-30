@@ -16,8 +16,8 @@ def task_add(request):
             obj_task = Task.objects.get(id=id_task)
         else:
             obj_task = Task()
-
-        obj_task.cod_user = request.user.id
+            obj_task.cod_user = request.user.id
+        
         obj_task.id_clinica = request.POST.get('id_clinica')
         obj_task.tipo = request.POST.get('tipo')
         obj_task.prioridade = request.POST.get('prioridade')
