@@ -13,7 +13,11 @@
 <form method="post" id="form_query" action="{% url 'task:task_sql_to_table' %}">
   {% csrf_token %}
 
-  <input type="hidden" name="offset" placeholder="offset" id="stt_offset" value="0" onFocus="form_fetch()">
+
+  <div style="opacity:0">
+    <input type="text" name="offset" placeholder="offset" id="stt_offset" value="0" onFocus="form_fetch()">
+    <input type="text" name="pagination" placeholder="pagination" id="stt_pagination" value="10">
+  </div>
 
   <div class="row justify-content-start">
     <div class="col-md-3 col-sm-6">
