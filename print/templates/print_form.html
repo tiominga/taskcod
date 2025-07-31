@@ -1,8 +1,7 @@
 {% extends "main.html" %}
 {% load static %}
 
-
-{% block body%}
+{% block body %}
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -25,7 +24,14 @@
                 <div class="carousel-inner">
                     {% for image in arr_images %}
                         <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
-                            <img src="{{ image.image.url }}" class="d-block mx-auto" style="max-width: 100%; height: auto;" alt="...">
+                            {% if image.image.url|lower|slice:"-4:" == ".mp4" %}
+                                <video width="100%" height="auto" controls>
+                                    <source src="{{ image.image.url }}" type="video/mp4">
+                                    Seu navegador não suporta o vídeo.
+                                </video>
+                            {% else %}
+                                <img src="{{ image.image.url }}" class="d-block mx-auto" style="max-width: 100%; height: auto;" alt="...">
+                            {% endif %}
                         </div>
                     {% empty %}
                         <p>Nenhuma imagem encontrada para a tarefa id {{ cod_task }}.</p>
